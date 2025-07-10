@@ -1,0 +1,287 @@
+---
+title: "La Comunidad de Programadores de R-es ¿cómo crear un grupo de usuarios de R?"
+author: "Emilio López Cano"
+format: 
+  revealjs:
+    theme: [solarized, congresos.scss]
+    footer: "Seminario grupo de investigación MoDAE de la UIB"
+    logo: img/DSLab_logo.png
+    menu:
+      numbers: false
+    show-slide-number: all
+    slide-number: true
+---
+
+```{r}
+#| include = FALSE
+knitr::opts_chunk$set(echo=FALSE, message = FALSE)
+library(timevis)
+library(dplyr)
+library(leaflet)
+library(lubridate)
+timelinedata <- readxl::read_excel("timeline.xlsx")
+rugdata <- readxl::read_excel("timeline.xlsx", 2)
+```
+
+
+
+# ¿Quiénes somos?
+
+:::{.reslogo}
+![](img/r-es.png)
+:::
+
+## El nombre
+
+- Asociación Comunidad R Hispano
+
+. . . 
+
+- Inicialmente "Asociación de Usuarios de R de España"
+
+- Registro de asociaciones: restricciones en los nombres de asociaciones,
+en particular con la palabra "usuarios" (ni R-es, ...)
+
+- Tras varias iteraciones, _nos dejaron_ poner ese nombre
+
+
+
+## Junta Directiva
+
+- Presidente: Emilio López Cano
+- Vicepresidente: José Luis Cañadas Reche
+- Secretaria: Mireia Camacho Corrales
+- Tesorero: Santiago Mota Herce
+- Vocales: Pedro Concejero Cerezo, Luz Frías Díaz, Paula López Casado, Carlos Ortega Fernández, Francisco Javier Ibáñez López, Leonardo Hansa Torres
+
+## Socios
+
+- Fundacionales: 54
+
+- Actuales: +500
+
+
+
+
+# Asociación Comunidad R Hispano
+
+## Objeto
+
+>**Fomentar el avance del conocimiento y uso del lenguaje de programación R** y el desarrollo de la profesión en todas sus vertientes, especialmente la investigadora, docente y empresarial.
+>
+> Artículo 5 de los estatutos
+
+
+- Favorecer el estudio y difusión de los conocimientos propios de la **Estadística, análisis de datos** y campos afines.
+
+---
+
+- Elegir a los representantes en los aspectos científicos, técnicos y administrativos, frente a otras sociedades o Administración pública, tribunales o comisiones, cuando su presencia sea requerida.
+- **Organizar, patrocinar y promover** los cursos, congresos o reuniones propuestos por miembros de R-es y aprobados en Asamblea General.
+- Establecer relaciones con **otras sociedades científicas** y técnicas españolas o extranjeras
+- Crear y coordinar los grupos de trabajo de R-es
+
+
+
+# <http://r-es.org>
+
+
+
+# ¿De dónde venimos?
+
+## El origen
+
+No puedo mejorar este resumen de Carlos Gil ([@gilbellosta](https://twitter.com/gilbellosta)), principal "culpable" de todo esto:
+
+<https://www.datanalytics.com/2018/12/11/siete-anos-despues-dejo-la-presidencia-de-la-comunidad-r-hispano/>
+
+## Trayectoria
+
+```{r}
+#| eval = TRUE
+timelinedata |> 
+  timevis(width = "100%", loadDependencies = FALSE)
+```
+
+
+
+# Hitos conseguidos
+
+- 15 ediciones de las jornadas interrumpidas solo por el COVID
+
+- Website: <http://r-es.org> 
+
+- Twitter: <https://twitter.com/R_Hisp> 
+
+- Grupo de WhatsApp de socios
+
+- Google workspace para todos los socios
+
+- 13 grupos locales, algunos muy activos
+
+- **Apoyo institucional SEIO** en los congresos
+
+
+
+## Jornadas
+
+```{r}
+#| echo: false
+#| eval: false
+timelinedata |> 
+  filter(tipo == "jornadas") |>
+  select(asistentes) |> pull() |> 
+  summary()
+```
+```{r}
+timelinedata |> 
+  filter(tipo == "jornadas") |>
+  leaflet() |>
+  addTiles() |>  # Add default OpenStreetMap map tiles
+  addMarkers(lng=~Lon, lat=~Lat, popup=~city, label = ~as.character(year(start)),
+             clusterOptions = markerClusterOptions(freezeAtZoom = 7)) 
+```
+
+
+
+## Grupos de interés local/R Ladies
+
+:::{.columns}
+
+:::{.column}
+- Madrid (mensual)
+- Galicia (anual)
+- Murcia (cosicas)
+- Sevilla (mensual)
+- Castilla-la-Mancha (R Quixote) (congreso)
+:::
+:::{.column}
+- Canarias (intermitente)
+- Málaga (retomando)
+- Córdoba
+- Asturias
+- Almería
+- Valencia
+- Barcelona
+- Salamanca
+
+- R Ladies: Madrid, Barcelona, Bilbao, Valencia
+:::
+:::
+
+---
+
+```{r}
+
+getColor <- function(grupos) {
+  lapply(grupos$tipo, function(tipo) {
+  if(tipo == "activo") {
+    "green"
+  } else if(tipo == "ladies") {
+    "purple"
+  } else {
+    "blue"
+  } })
+}
+
+icons <- awesomeIcons(
+  icon = 'ios-close',
+  iconColor = 'black',
+  library = 'ion',
+  markerColor = getColor(rugdata)
+)
+
+map <- rugdata |> 
+  leaflet() |>
+  addTiles() 
+map |> addAwesomeMarkers(lng=~Lon, lat=~Lat, label=~grupo, icon = icons) 
+```
+
+# ¿A dónde vamos?
+
+## Tendencias globales
+
+- RStudio y `tidyverse` por todas partes
+
+- Licencia "Pro" (incluido RSConnect) gratuita para educación
+
+- Aplicaciones Shiny: [Algunos ejemplos](http://shiny.uclm.es/categories/shinyapps/)
+
+- useR! conferences + rstudio::conf + ...
+
+- R Consortium: financiación, canal de YouTube
+
+- R mezclado, no agitado: python, JavaScript, h2o, stan, spark, ...
+
+(todo lo que has visto aquí está hecho con R + markdown)
+
+
+
+
+class: large
+
+# ¿A dónde vamos?
+
+## Retos futuros
+
+- Consolidar relación con los grupos locales y con los grupos R-Ladies, y entre ellos
+
+- Mantener el nivel de las jornadas anuales
+
+- Mejorar comunicación con socios y contenido web
+
+- Desarrollar los estatutos
+  - Organizar grupos de trabajo (actualmente vocales "temáticos")
+  - Ampliar relaciones institucionales (INE, UNE, SEE)
+  - Socios institucionales, etc.
+
+
+
+
+class: large
+
+#  No nos mires
+
+## Hazte socia/o
+
+- Cuota de inscripción congelada desde la creación de la asociación **(0 EUR)**
+
+- Formulario en la web 
+
+- Solo se envían correos imprescindibles
+
+--
+
+## Asiste a las jornadas
+
+- Envíos hasta el 15 de septiembre: http://r-es.org/XIjuR/ 
+
+- Cuota reducida para socios
+
+## Asiste a las reuniones mensuales de los grupos locales
+
+- Madrid, Sevilla, Málaga, Murcia, Canarias, Asturias, Galicia, Almería, ...
+
+- Consulta sus agendas en sus sitios web o cuentas de Twitter
+
+
+
+
+class: large
+background-image: url(img/iwantu.gif)
+background-size: 100%
+background-position: 50% 50%
+
+# Únete
+
+
+class: inverse, middle, center
+background-image: url(img/antetodo.png)
+background-size: 15%
+background-position: 50% 90%
+
+# ¡Gracias!
+
+http://blog.uclm.es/emiliolcano
+
+http://emilio.lcano.com/p/seio2019
