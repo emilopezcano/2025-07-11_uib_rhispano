@@ -199,7 +199,7 @@ map |> addAwesomeMarkers(lng=~Lon, lat=~Lat, label=~grupo, icon = icons)
 
 # ¿A dónde vamos?
 
-## Tendencias globales
+## Tendencias globales (2019)
 
 - RStudio y `tidyverse` por todas partes
 
@@ -215,18 +215,39 @@ map |> addAwesomeMarkers(lng=~Lon, lat=~Lat, label=~grupo, icon = icons)
 
 (todo lo que has visto aquí está hecho con R + markdown)
 
+## Tendencias globales (2025)
+
+- Positron (VS Code vitaminado)
+
+- LLMs
+
+- Quarto
+
+- Más Shiny
+
+
+## Algunos ejemplos recientes
+
+- Dashboard UNECA
+
+- [Dashboard OBEPE](https://dashboard.epe.gov.br/apps/OBEPE/)
+
+- Dashboard turismo sostenible
+
+- Dashboards _Sports Analytics_
+
+- No solo dashboards: aplicación para tratamiento y análisis de encuestas para publicaciones.
 
 
 
-class: large
-
-# ¿A dónde vamos?
 
 ## Retos futuros
 
+- Grupo local ¿balear?
+
 - Consolidar relación con los grupos locales y con los grupos R-Ladies, y entre ellos
 
-- Mantener el nivel de las jornadas anuales
+- Mantener el nivel del congreso anual
 
 - Mejorar comunicación con socios y contenido web
 
@@ -234,13 +255,24 @@ class: large
   - Organizar grupos de trabajo (actualmente vocales "temáticos")
   - Ampliar relaciones institucionales (INE, UNE, SEE)
   - Socios institucionales, etc.
+  
+  
+## Recursos para grupos
+
+- [R Consortium](https://r-consortium.org): ayuda si hay actividad periódica. Espacio en meetup y ayuda económica.
+
+- Asociación: espacio en servidor, apoyo en facturación, difusión, ...
+
+- Herramientas de Google
+
+- Distintos modelos: evento mensual (Madrid y Sevilla), anual (Galicia, CLM), ...
 
 
 
 
-class: large
 
 #  No nos mires
+![](img/iwantu.gif)
 
 ## Hazte socia/o
 
@@ -250,7 +282,6 @@ class: large
 
 - Solo se envían correos imprescindibles
 
---
 
 ## Asiste a las jornadas
 
@@ -267,21 +298,14 @@ class: large
 
 
 
-class: large
-background-image: url(img/iwantu.gif)
-background-size: 100%
-background-position: 50% 50%
 
-# Únete
+## Únete
 
 
-class: inverse, middle, center
-background-image: url(img/antetodo.png)
-background-size: 15%
-background-position: 50% 90%
+![](img/antetodo.png)
 
-# ¡Gracias!
+# ¡Gràcies!
 
-http://blog.uclm.es/emiliolcano
+<https://lcano.com/>
 
-http://emilio.lcano.com/p/seio2019
+<https://emilopezcano.github.io/2025-07-11_uib_rhispano/>
